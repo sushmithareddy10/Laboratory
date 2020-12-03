@@ -1,9 +1,14 @@
 package com.cg.healthassistlaboratory.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+
+
 
 /**
  * This is a Doctor class which has fields regarding doctor personal details.
@@ -14,26 +19,30 @@ import javax.persistence.Id;
 @Entity
 public class Doctor {
 	/**
-	 * creating Integer instance variable doctorId
+	 * creating long instance variable doctorId
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int doctorId;
+	@Column(unique=true, updatable=false)
+	private long doctorId;
 	/**
 	 * creating String instance variable doctorName
 	 */
+	@NotBlank(message="Doctor Name is requried")
 	private String doctorName;
 	/**
 	 * creating String instance variable doctorSpecialization
 	 */
+	@NotBlank(message="Doctor Specialization is required")
 	private String doctorSpecialization;
 	/**
 	 * creating Long instance variable doctorPhoneNumber
 	 */
-	private long doctorPhoneNumber;
+	@NotBlank(message="Doctor Phone Number is required")
+	private String doctorPhoneNumber;
 	/**
 	 * creating String instance variable doctorEmail
 	 */
+	@NotBlank(message="Doctor Email is required")
 	private String doctorEmail;
 	
 	
@@ -42,14 +51,14 @@ public class Doctor {
 	 * creating getter for doctorId to get the doctorId details
 	 * @return
 	 */
-	public int getDoctorId() {
+	public long getDoctorId() {
 		return doctorId;
 	}
 	/**
 	 * creating setter for doctorId to set the parameter values to the doctorId
 	 * @param doctorId
 	 */
-	public void setDoctorId(int doctorId) {
+	public void setDoctorId(long doctorId) {
 		this.doctorId = doctorId;
 	}
 	/**
@@ -84,14 +93,14 @@ public class Doctor {
 	 * creating getter for doctorPhoneNumber to get the details for doctorPhoneNumber
 	 * @return
 	 */
-	public long getDoctorPhoneNumber() {
+	public String getDoctorPhoneNumber() {
 		return doctorPhoneNumber;
 	}
 	/**
 	 * creating setter for doctorPhoneNumber to set the parameter value for doctorPhoneNumber
 	 * @param doctorPhoneNumber
 	 */
-	public void setDoctorPhoneNumber(long doctorPhoneNumber) {
+	public void setDoctorPhoneNumber(String doctorPhoneNumber) {
 		this.doctorPhoneNumber = doctorPhoneNumber;
 	}
 	/**
@@ -117,7 +126,7 @@ public class Doctor {
 	 * @param doctorPhoneNumber
 	 * @param doctorEmail
 	 */
-	public Doctor(int doctorId, String doctorName, String doctorSpecialization, long doctorPhoneNumber,
+	public Doctor(long doctorId, String doctorName, String doctorSpecialization, String doctorPhoneNumber,
 			String doctorEmail) {
 		super();
 		this.doctorId = doctorId;
@@ -137,9 +146,11 @@ public class Doctor {
 				+ "]";
 	}
 	
-	
+	/**
+	 * creating non-parameterized constructor 
+	 */
 	public Doctor() {
-		// TODO Auto-generated constructor stub
+		
 	}
 	
 	

@@ -1,9 +1,12 @@
 package com.cg.healthassistlaboratory.domain;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.Range;
 
 /**
  * This is a Medical Test class which has fields related to medical test
@@ -17,29 +20,31 @@ public class MedicalTest {
 	 * creating a Integer instance variable medicalTestId;
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int medicalTestId;
+	@Column(unique=true, updatable=false)
+	private long medicalTestId;
 	/**
 	 * creating String instance variable medicalTestName;
 	 */
+	@NotBlank(message = "Medical Test name is required")
 	private String medicalTestName;
 	/**
 	 * creating double instance variable medicalTestPrice
 	 */
-	private double medicalTestPrice;
+	 @Range(min = (long) 0.0, max = (long) 100000.0)	
+	 private double medicalTestPrice;
 	
 	/**
 	 * creating getter for medicalTestId which returns the value of medicalTestId
 	 * @return
 	 */
-	public int getMedicalTestId() {
+	public long getMedicalTestId() {
 		return medicalTestId;
 	}
 	/**
 	 * creating setter for medicalTestId which sets the parameter for medicalTestId
 	 * @param medicalTestId
 	 */
-	public void setMedicalTestId(int medicalTestId) {
+	public void setMedicalTestId(long medicalTestId) {
 		this.medicalTestId = medicalTestId;
 	}
 	/**
@@ -77,7 +82,7 @@ public class MedicalTest {
 	 * @param medicalTestName
 	 * @param medicalTestPrice
 	 */
-	public MedicalTest(int medicalTestId, String medicalTestName, double medicalTestPrice) {
+	public MedicalTest(long medicalTestId, String medicalTestName, double medicalTestPrice) {
 		super();
 		this.medicalTestId = medicalTestId;
 		this.medicalTestName = medicalTestName;

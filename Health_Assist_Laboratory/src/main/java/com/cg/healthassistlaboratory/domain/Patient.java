@@ -4,6 +4,7 @@ import javax.persistence.Embeddable;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 /**
  * This is a Patient class which has fields related to patient 
@@ -21,6 +22,7 @@ public class Patient {
 	/**
 	 * creating Integer instance variable patientAge
 	 */
+	@NotNull(message = "required")
 	private int patientAge;
 	/**
 	 * creating long instance varibale patientPhoneNumber

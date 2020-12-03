@@ -18,8 +18,7 @@ public class AppointmentMedicalTest {
 	 * creating Integer instance variable appointmentMedicalTestId
 	 */
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int appointmentMedicalTestId;
+	private long appointmentMedicalTestId;
 	/**
 	 * creating Patient instance object as variable for patient details
 	 */
@@ -38,14 +37,14 @@ public class AppointmentMedicalTest {
 	 * creating getter for appointmentMedicalTest which returns the appointmentMedicaTest value
 	 * @return
 	 */
-	public int getAppointmentMedicalTestId() {
+	public long getAppointmentMedicalTestId() {
 		return appointmentMedicalTestId;
 	}
 	/**
 	 * creating a setter for appointmentMedicalTestId to set the parameter value for appoinmentMedicalTestId
 	 * @param appointmentMedicalTestId
 	 */
-	public void setAppointmentMedicalTestId(int appointmentMedicalTestId) {
+	public void setAppointmentMedicalTestId(long appointmentMedicalTestId) {
 		this.appointmentMedicalTestId = appointmentMedicalTestId;
 	}
 	/**
@@ -98,7 +97,7 @@ public class AppointmentMedicalTest {
 	 * @param medicalTestName
 	 * @param bloodGroup
 	 */
-	public AppointmentMedicalTest(int appointmentMedicalTestId, Patient patient, String medicalTestName,
+	public AppointmentMedicalTest(long appointmentMedicalTestId, Patient patient, String medicalTestName,
 			String bloodGroup) {
 		super();
 		this.appointmentMedicalTestId = appointmentMedicalTestId;
