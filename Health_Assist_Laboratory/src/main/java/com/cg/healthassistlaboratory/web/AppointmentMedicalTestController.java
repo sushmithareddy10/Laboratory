@@ -13,25 +13,53 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cg.healthassistlaboratory.domain.AppointmentMedicalTest;
 import com.cg.healthassistlaboratory.service.AppointmentMedicalTestService;
 
+/**
+ * creating AppointmentMedicalTestController which controls all the service of
+ * AppointmentMedicalTestn using RESTful Api's
+ *
+ */
 @RestController
-@RequestMapping("api/appointments")
+@RequestMapping("/api/appointments")
 public class AppointmentMedicalTestController {
-	
+	/**
+	 * creating AppointmentMedicalTestService by autowiring to instantiate the
+	 * appointmentService object
+	 */
 	@Autowired
 	private AppointmentMedicalTestService appointmentService;
-	
-	@PostMapping("")
-	public void saveAppointmentMedicalTest(@RequestBody AppointmentMedicalTest appointmentMedicalTest) {
-		appointmentService.save(appointmentMedicalTest);
-	}
-	
+
+	/**
+	 * creating saveAppointmentMedicalTest to save the medicalTest details
+	 * 
+	 * @param appointmentMedicalTest
+	 */
+//	@PostMapping("/insert")
+//	public void saveAppointmentMedicalTest(@RequestBody AppointmentMedicalTest appointmentMedicalTest) {
+//		appointmentService.save(appointmentMedicalTest);
+//	}
+
+	/**
+	 * creating viewAppointmentMedicalTests which returns all the list of medical
+	 * tests from database
+	 * 
+	 * @return
+	 */
 	@GetMapping("/all")
 	public List<AppointmentMedicalTest> viewAppointmentMedicalTests() {
-		return appointmentService.viewMedicalTest();
+		return appointmentService.viewAppointmentMedicalTest();
 	}
-	
+
+	/**
+	 * creating addPatientTestResult method which returns the appointment medical
+	 * test object given medicalTestId and testResult as parameters
+	 * 
+	 * @param medicalTestId
+	 * @param testResult
+	 * @return
+	 */
 	@GetMapping("/{medicalTestId}/{testResult}")
-	public AppointmentMedicalTest addPatientTestResult(@PathVariable("medicalTestId") long medicalTestId, @PathVariable("testResult") String testResult) {
+	public AppointmentMedicalTest addPatientTestResult(@PathVariable("medicalTestId") long medicalTestId,
+			@PathVariable("testResult") String testResult) {
 		return appointmentService.addPatientMedicalTestResult(medicalTestId, testResult);
 	}
 
